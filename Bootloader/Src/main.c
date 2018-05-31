@@ -66,7 +66,8 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+	
+		uint8_t i;
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -98,7 +99,10 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
 		APP_IWDG_Refresh();
-		MainComm_SendString("bootloader waiting for select...\r\n");
+		for(i = 0; i < 5; ++i)
+		{	
+			MainComm_SendString("bootloader waiting for select...\r\n");
+		}
   }
   /* USER CODE END 3 */
 

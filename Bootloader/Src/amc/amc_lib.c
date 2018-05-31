@@ -13,8 +13,11 @@
 
 #include "amc_lib.h"
 //#include "usbd_cdc_if.h"
-//#include "cqueue.h"
+#include "cqueue.h"
 //#include "il005define.h"
+
+#define CCT_CMD_SIZE_MIN 10
+#define CCT_RSP_SIZE_MIN 10
 
 void iprintf(char *fmt,...) 
 {
@@ -25,14 +28,14 @@ void iprintf(char *fmt,...)
   va_start(ap,fmt);		                        //calculate start address for fmt
 	len = vsprintf(buf,fmt,ap);                 //save data form fmt to buf buffer
 	va_end(ap);				                          //end
-  cdcSend2Host((uint8_t *)buf,(uint16_t)len); //send	
+//  cdcSend2Host((uint8_t *)buf,(uint16_t)len); //send	
 }
 
 void cmd_printf(char *fmt, uint8_t *cmd) 
 {  
   uint8_t i;
 
-  if(cmd[0] < IL005_CMD_SIZE_MIN)
+  if(cmd[0] < CCT_CMD_SIZE_MIN)
   {
     iprintf("\r\n COMMAND Length Error : ");
     for(i=0;i<cmd[0];i++)
@@ -71,7 +74,7 @@ void rsp_printf(char *fmt, uint8_t *rsp)
 {  
   uint8_t i;
 
-  if(rsp[0] < IL005_RSP_SIZE_MIN)
+  if(rsp[0] < CCT_RSP_SIZE_MIN)
   {
     iprintf("\r\n Response Length Error : ");
     for(i=0;i<rsp[0];i++)
@@ -140,7 +143,7 @@ void err_printf(char *fmt,...)
 	va_start(ap,fmt);		                        //calculate start address for fmt
 	len = vsprintf(buf,fmt,ap);                 //save data form fmt to buf buffer
 	va_end(ap);				                          //end
-	cdcSend2Host((uint8_t *)buf,(uint16_t)len); //send	 
+//	cdcSend2Host((uint8_t *)buf,(uint16_t)len); //send	 
 }
 
 uint32_t mEnterInput(uint8_t length)

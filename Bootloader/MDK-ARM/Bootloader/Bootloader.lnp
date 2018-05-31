@@ -23,6 +23,8 @@
 "bootloader\stm32f1xx_hal_tim_ex.o"
 "bootloader\stm32f1xx_hal_flash.o"
 "bootloader\stm32f1xx_hal_iwdg.o"
+"bootloader\amc_lib.o"
+"bootloader\cqueue.o"
 --library_type=microlib --strict --scatter "Bootloader\Bootloader.sct"
 --diag_suppress=L6329 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
