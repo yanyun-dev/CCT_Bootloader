@@ -14,6 +14,7 @@
 #include "amc_lib.h"
 //#include "usbd_cdc_if.h"
 #include "cqueue.h"
+#include "usart.h"
 //#include "il005define.h"
 
 #define CCT_CMD_SIZE_MIN 10
@@ -29,6 +30,7 @@ void iprintf(char *fmt,...)
 	len = vsprintf(buf,fmt,ap);                 //save data form fmt to buf buffer
 	va_end(ap);				                          //end
 //  cdcSend2Host((uint8_t *)buf,(uint16_t)len); //send	
+	MainComm_SendString(buf);
 }
 
 void cmd_printf(char *fmt, uint8_t *cmd) 

@@ -52,7 +52,7 @@ extern UART_HandleTypeDef huart1;
 #define MAIN_COMM_SEND_TIMEOUT 10
 #define MainComm_SendCharArray(CharArray) HAL_UART_Transmit(&huart1, CharArray, sizeof(CharArray), MAIN_COMM_SEND_TIMEOUT)
 #define MainComm_SendString(String) do { \
-	uint8_t i = 0; \
+	uint8_t i = 1; \
 	char * s = String; \
 	while(*s != '\0') { \
 		++s; \
@@ -60,6 +60,9 @@ extern UART_HandleTypeDef huart1;
 	} \
 	HAL_UART_Transmit(&huart1, String, i, MAIN_COMM_SEND_TIMEOUT); \
 }while(0)
+
+#define MainComm_GetChar(pData) HAL_UART_Receive(&huart1, pData, 1, 1000)
+#define MainComm_PutChar(pData) HAL_UART_Transmit(&huart1, pData, 1, 0)
 
 /* USER CODE END Private defines */
 

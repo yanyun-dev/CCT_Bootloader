@@ -32,3 +32,4 @@ bootloader\main.o: ../Inc/iwdg.h
 bootloader\main.o: ../Inc/usart.h
 bootloader\main.o: ../Inc/gpio.h
 bootloader\main.o: ../Inc/constant_config.h
+bootloader\main.o: ..\Inc\amc\amc_lib.h

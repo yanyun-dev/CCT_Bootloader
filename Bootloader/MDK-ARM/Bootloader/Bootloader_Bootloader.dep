@@ -85,7 +85,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x5B0FD400)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_iwdg.h)(0x5B0FD400)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x5B0FD400)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x5B0FD400)
-F (../Src/main.c)(0x5B1014F4)(-c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Inc\amc --C99-IE:\STM32\Bootloader_Project\Bootloader\MDK-ARM\RTE\_Bootloader-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include"-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o bootloader\main.o --omf_browse bootloader\main.crf --depend bootloader\main.d)
+F (../Src/main.c)(0x5B108166)(-c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Inc\amc --C99-IE:\STM32\Bootloader_Project\Bootloader\MDK-ARM\RTE\_Bootloader-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include"-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o bootloader\main.o --omf_browse bootloader\main.crf --depend bootloader\main.d)
 I (../Inc/main.h)(0x5B0FECC6)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x5B0FD400)
 I (../Inc/stm32f1xx_hal_conf.h)(0x5B0FECC6)
@@ -115,9 +115,10 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x5B0FD400)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x5B0FD400)
 I (../Inc/crc.h)(0x5B0FECC5)
 I (../Inc/iwdg.h)(0x5B0FED38)
-I (../Inc/usart.h)(0x5B0FFD4A)
+I (../Inc/usart.h)(0x5B108031)
 I (../Inc/gpio.h)(0x5B0FECC5)
 I (../Inc/constant_config.h)(0x5B0FFAE3)
+I (..\Inc\amc\amc_lib.h)(0x5B10139B)
 F (../Src/gpio.c)(0x5B0FECC5)(-c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Inc\amc --C99-IE:\STM32\Bootloader_Project\Bootloader\MDK-ARM\RTE\_Bootloader-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include"-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o bootloader\gpio.o --omf_browse bootloader\gpio.crf --depend bootloader\gpio.d)
 I (../Inc/gpio.h)(0x5B0FECC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x5B0FD400)
@@ -148,7 +149,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_iwdg.h)(0x5B0FD400)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x5B0FD400)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x5B0FD400)
 F (../Src/usart.c)(0x5B0FF778)(-c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Inc\amc --C99-IE:\STM32\Bootloader_Project\Bootloader\MDK-ARM\RTE\_Bootloader-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include"-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o bootloader\usart.o --omf_browse bootloader\usart.crf --depend bootloader\usart.d)
-I (../Inc/usart.h)(0x5B0FFD4A)
+I (../Inc/usart.h)(0x5B108031)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x5B0FD400)
 I (../Inc/stm32f1xx_hal_conf.h)(0x5B0FECC6)
 I (../Inc/main.h)(0x5B0FECC6)
@@ -206,7 +207,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x5B0FD400)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_iwdg.h)(0x5B0FD400)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x5B0FD400)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x5B0FD400)
-F (../Src/iwdg.c)(0x5B0FECC5)(-c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Inc\amc --C99-IE:\STM32\Bootloader_Project\Bootloader\MDK-ARM\RTE\_Bootloader-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include"-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o bootloader\iwdg.o --omf_browse bootloader\iwdg.crf --depend bootloader\iwdg.d)
+F (../Src/iwdg.c)(0x5B107A7B)(-c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Inc\amc --C99-IE:\STM32\Bootloader_Project\Bootloader\MDK-ARM\RTE\_Bootloader-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include"-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o bootloader\iwdg.o --omf_browse bootloader\iwdg.crf --depend bootloader\iwdg.d)
 I (../Inc/iwdg.h)(0x5B0FED38)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x5B0FD400)
 I (../Inc/stm32f1xx_hal_conf.h)(0x5B0FECC6)
@@ -655,7 +656,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x5B0FD400)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_iwdg.h)(0x5B0FD400)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x5B0FD400)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x5B0FD400)
-F (..\Src\amc\amc_lib.c)(0x5B101456)(-c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Inc\amc --C99-IE:\STM32\Bootloader_Project\Bootloader\MDK-ARM\RTE\_Bootloader-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include"-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o bootloader\amc_lib.o --omf_browse bootloader\amc_lib.crf --depend bootloader\amc_lib.d)
+F (..\Src\amc\amc_lib.c)(0x5B107706)(-c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Inc\amc --C99-IE:\STM32\Bootloader_Project\Bootloader\MDK-ARM\RTE\_Bootloader-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include"-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o bootloader\amc_lib.o --omf_browse bootloader\amc_lib.crf --depend bootloader\amc_lib.d)
 I (D:\Program Files (x86)\Keil_v5\ARM\ARMCC\include\stdio.h)(0x57F606B8)
 I (D:\Program Files (x86)\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x57F606B8)
 I (..\Inc\amc\amc_lib.h)(0x5B10139B)
@@ -686,6 +687,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_iwdg.h)(0x5B0FD400)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x5B0FD400)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x5B0FD400)
 I (..\Inc\amc\cqueue.h)(0x5B1013A8)
+I (../Inc/usart.h)(0x5B108031)
 F (..\Src\amc\cqueue.c)(0x5B100EA3)(-c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Inc\amc --C99-IE:\STM32\Bootloader_Project\Bootloader\MDK-ARM\RTE\_Bootloader-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include"-I"D:\Program Files (x86)\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include"-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o bootloader\cqueue.o --omf_browse bootloader\cqueue.crf --depend bootloader\cqueue.d)
 I (D:\Program Files (x86)\Keil_v5\ARM\ARMCC\include\string.h)(0x57F606B8)
 I (..\Inc\amc\cqueue.h)(0x5B1013A8)

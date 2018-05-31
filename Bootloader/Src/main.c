@@ -40,6 +40,7 @@
 
 /* USER CODE BEGIN Includes */
 #include "constant_config.h"
+#include "amc_lib.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -68,6 +69,7 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	
 		uint8_t i;
+		uint8_t gChar;
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -85,10 +87,14 @@ int main(void)
   MX_IWDG_Init();
 
   /* USER CODE BEGIN 2 */
+	gChar = '\0';
 	APP_IWDG_Start();
-	MainComm_SendCharArray(BL_StartLog);
+	MainComm_SendString("\033[2J");
+	MainComm_SendString("\033[2J");
+	MainComm_SendString("\033[1;40;32m");
+	iprintf("\033[%d;%dH", 1, 1);
 	MainComm_SendString("bootloader start...\r\n");
-	
+//	MainComm_SendString("\r\n->");
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -99,9 +105,23 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
 		APP_IWDG_Refresh();
-		for(i = 0; i < 5; ++i)
+		iprintf("Press any key to interrupt autoboot:  %d",5);
+		for(i = 4; i > 0; --i)
 		{	
-			MainComm_SendString("bootloader waiting for select...\r\n");
+			if(MainComm_GetChar(&gChar) == HAL_TIMEOUT){
+				iprintf("\033[%dD", 1);
+				iprintf("%d", i);
+			}
+			else {
+				MainComm_PutChar(&gChar);
+				MainComm_SendString("\r\n->");
+				break;
+			}
+		}
+		//支持的命令列表输出
+		while(1)
+		{
+			;
 		}
   }
   /* USER CODE END 3 */

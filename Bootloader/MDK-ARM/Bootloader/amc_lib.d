@@ -30,3 +30,4 @@ bootloader\amc_lib.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_iwdg.h
 bootloader\amc_lib.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 bootloader\amc_lib.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 bootloader\amc_lib.o: ..\Inc\amc\cqueue.h
+bootloader\amc_lib.o: ../Inc/usart.h
