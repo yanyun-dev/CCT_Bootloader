@@ -40,5 +40,3 @@ uint32_t mEnterInput(uint8_t length);
 uint8_t mgets(uint8_t *pBuf, uint16_t length);
 
 #endif /*__ICTK_LIB_H*/
-
-/************************ (c) COPYRIGHT 2016 ICTK Co., LTD. *****END OF FILE*****/

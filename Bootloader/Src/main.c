@@ -41,6 +41,7 @@
 /* USER CODE BEGIN Includes */
 #include "constant_config.h"
 #include "amc_lib.h"
+#include "bl_command.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -70,6 +71,7 @@ int main(void)
 	
 		uint8_t i;
 		uint8_t gChar;
+	Cmd const * cmd;
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -88,7 +90,7 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
 	gChar = '\0';
-	APP_IWDG_Start();
+//	APP_IWDG_Start();
 	MainComm_SendString("\033[2J");
 	MainComm_SendString("\033[2J");
 	MainComm_SendString("\033[1;40;32m");
@@ -104,7 +106,7 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-		APP_IWDG_Refresh();
+//		APP_IWDG_Refresh();
 		iprintf("Press any key to interrupt autoboot:  %d",5);
 		for(i = 4; i > 0; --i)
 		{	
@@ -113,16 +115,30 @@ int main(void)
 				iprintf("%d", i);
 			}
 			else {
-				MainComm_PutChar(&gChar);
+				MainComm_SendString("\r\n");
+				commandAllDisplay();
+				MainComm_SendString("Select command code: \r\n");
 				MainComm_SendString("\r\n->");
 				break;
 			}
 		}
+		MainComm_SendString("\r\n");
 		//支持的命令列表输出
-		while(1)
+		if(i != 0)
 		{
-			;
+			while(1) {
+				if(MainComm_GetChar(&gChar) == HAL_TIMEOUT)
+				{
+					MainComm_SendString("Input Timeout\r\n");
+					MainComm_SendString("System will reboot...\r\n");
+					cmd = commandGet(REBOOT);
+					commandRun(cmd);
+				}
+			}
 		}
+		MainComm_SendString("App will start...\r\n");
+		cmd = commandGet(RUN_APP);
+		commandRun(cmd);
   }
   /* USER CODE END 3 */
 

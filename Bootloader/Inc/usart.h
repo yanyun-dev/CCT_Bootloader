@@ -43,7 +43,7 @@
 #include "main.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "amc_lib.h"
 /* USER CODE END Includes */
 
 extern UART_HandleTypeDef huart1;
@@ -59,6 +59,19 @@ extern UART_HandleTypeDef huart1;
 		++i; \
 	} \
 	HAL_UART_Transmit(&huart1, String, i, MAIN_COMM_SEND_TIMEOUT); \
+}while(0)
+
+#define MainComm_Error(String) do { \
+	uint8_t i = 1; \
+	MainComm_SendString("\033[0;31m"); \
+	char * s = String; \
+	while(*s != '\0') { \
+		++s; \
+		++i; \
+	} \
+	iprintf("file: %s, line: %d \r\n", __FILE__, __LINE__); \
+	HAL_UART_Transmit(&huart1, String, i, MAIN_COMM_SEND_TIMEOUT); \
+	MainComm_SendString("\033[1;40;32m"); \
 }while(0)
 
 #define MainComm_GetChar(pData) HAL_UART_Receive(&huart1, pData, 1, 1000)

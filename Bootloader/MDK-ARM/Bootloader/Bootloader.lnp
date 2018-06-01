@@ -8,6 +8,7 @@
 "bootloader\usart.o"
 "bootloader\crc.o"
 "bootloader\iwdg.o"
+"bootloader\bl_command.o"
 "bootloader\stm32f1xx_hal_tim.o"
 "bootloader\stm32f1xx_hal_gpio.o"
 "bootloader\stm32f1xx_hal_pwr.o"
