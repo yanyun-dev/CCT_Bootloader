@@ -52,30 +52,26 @@ extern UART_HandleTypeDef huart1;
 #define MAIN_COMM_SEND_TIMEOUT 10
 #define MainComm_SendCharArray(CharArray) HAL_UART_Transmit(&huart1, CharArray, sizeof(CharArray), MAIN_COMM_SEND_TIMEOUT)
 #define MainComm_SendString(String) do { \
-	uint8_t i = 1; \
 	char * s = String; \
 	while(*s != '\0') { \
 		++s; \
-		++i; \
 	} \
-	HAL_UART_Transmit(&huart1, String, i, MAIN_COMM_SEND_TIMEOUT); \
+	HAL_UART_Transmit(&huart1, String, s - String + 1, MAIN_COMM_SEND_TIMEOUT); \
 }while(0)
 
 #define MainComm_Error(String) do { \
-	uint8_t i = 1; \
 	MainComm_SendString("\033[0;31m"); \
 	char * s = String; \
 	while(*s != '\0') { \
 		++s; \
-		++i; \
 	} \
 	iprintf("file: %s, line: %d \r\n", __FILE__, __LINE__); \
-	HAL_UART_Transmit(&huart1, String, i, MAIN_COMM_SEND_TIMEOUT); \
+	HAL_UART_Transmit(&huart1, String, s - String + 1, MAIN_COMM_SEND_TIMEOUT); \
 	MainComm_SendString("\033[1;40;32m"); \
 }while(0)
 
-#define MainComm_GetChar(pData) HAL_UART_Receive(&huart1, pData, 1, 1000)
-#define MainComm_PutChar(pData) HAL_UART_Transmit(&huart1, pData, 1, 0)
+#define MainComm_GetChar(pData, timeout) HAL_UART_Receive(&huart1, pData, 1, timeout)
+#define MainComm_PutChar(pData, timeout) HAL_UART_Transmit(&huart1, pData, 1, timeout)
 
 /* USER CODE END Private defines */
 

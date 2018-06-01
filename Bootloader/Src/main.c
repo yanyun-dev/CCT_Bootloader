@@ -42,6 +42,7 @@
 #include "constant_config.h"
 #include "amc_lib.h"
 #include "bl_command.h"
+#include "assert.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -108,17 +109,13 @@ int main(void)
   /* USER CODE BEGIN 3 */
 //		APP_IWDG_Refresh();
 		iprintf("Press any key to interrupt autoboot:  %d",5);
-		for(i = 4; i > 0; --i)
+		for(i = 5; i > 0; --i)
 		{	
-			if(MainComm_GetChar(&gChar) == HAL_TIMEOUT){
+			if(MainComm_GetChar(&gChar, 1000) == HAL_TIMEOUT){
 				iprintf("\033[%dD", 1);
-				iprintf("%d", i);
+				iprintf("%d", i-1);
 			}
 			else {
-				MainComm_SendString("\r\n");
-				commandAllDisplay();
-				MainComm_SendString("Select command code: \r\n");
-				MainComm_SendString("\r\n->");
 				break;
 			}
 		}
@@ -126,13 +123,28 @@ int main(void)
 		//支持的命令列表输出
 		if(i != 0)
 		{
-			while(1) {
-				if(MainComm_GetChar(&gChar) == HAL_TIMEOUT)
+			while(1) {				
+				commandAllDisplay();
+				MainComm_SendString("Select command code: ");
+				while(MainComm_GetChar(&gChar, HAL_MAX_DELAY) == HAL_OK)
 				{
-					MainComm_SendString("Input Timeout\r\n");
-					MainComm_SendString("System will reboot...\r\n");
-					cmd = commandGet(REBOOT);
-					commandRun(cmd);
+					MainComm_PutChar(&gChar, 0);
+					assert(COMMAND_MAX < 10);
+					if(gChar >= '0' && gChar < '0' + COMMAND_MAX - 1)
+					{
+						MainComm_SendString("\r\n");
+						cmd = commandGet(gChar - '0');
+						commandRun(cmd);
+						break;
+					}
+					else {
+						MainComm_SendString("\r\nError!!! invalid input\r\n");
+						MainComm_SendString("Select command code: ");
+					}
+//					MainComm_SendString("Input Timeout\r\n");
+//					MainComm_SendString("System will reboot...\r\n");
+//					cmd = commandGet(REBOOT);
+//					commandRun(cmd);
 				}
 			}
 		}
@@ -227,7 +239,7 @@ void assert_failed(uint8_t* file, uint32_t line)
   /* User can add his own implementation to report the file name and line number,
     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
-
+	MainComm_Error("assert failed!!!");
 }
 
 #endif

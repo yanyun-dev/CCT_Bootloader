@@ -8,25 +8,21 @@ static COMMAND_RET (downloadApp)(void);
 static COMMAND_RET (doanloadAndRunApp)(void);
 static COMMAND_RET (runApp)(void);
 
-char reboot_description[] = "0: reboot system\r\n";
-char downloadApp_description[] = "1: download App with xmoderm transfer\r\n";
-char runApp_description[] = "2: jump to App\r\n";
-char doanloadAndRunApp_description[] = "3: download App and jump to App\r\n";
-
 static Cmd CmdArray[COMMAND_MAX] = {
-	{reboot, reboot_description},
-	{downloadApp, downloadApp_description},
-	{runApp, runApp_description},
-	{doanloadAndRunApp, doanloadAndRunApp_description}
+	{reboot, "  0: reboot system\r\n"},
+	{downloadApp, "  1: download App with xmoderm transfer\r\n"},
+	{runApp, "  2: jump to App\r\n"},
+	{doanloadAndRunApp, "  3: download App and jump to App\r\n"}
 };
 
 //display all suppoted command
 void commandAllDisplay(void)
 {
 	uint8_t i;
+	MainComm_SendString("Supported command list:\r\n");
 	for (i = 0; i < COMMAND_MAX; ++i)
 	{
-		MainComm_SendString(CmdArray[0].description);
+		MainComm_SendString(CmdArray[i].description);
 //		MainComm_SendString("1: download App with xmoderm transfer\r\n");
 	}
 }
@@ -59,6 +55,7 @@ void commmandSelectedDisplay(Cmd *cmd)
 
 static COMMAND_RET (reboot)(void)
 {
+	MainComm_SendString("reboot!!!\r\n");
 	HAL_NVIC_SystemReset();
 	return COMMAND_SUCCESS;
 }
@@ -66,6 +63,7 @@ static COMMAND_RET (reboot)(void)
 static COMMAND_RET (downloadApp)(void)
 {
 	//xmoderm transfer
+	MainComm_SendString("download app sucess!\r\n");
 	return COMMAND_SUCCESS;
 }
 
@@ -73,11 +71,13 @@ static COMMAND_RET (doanloadAndRunApp)(void)
 {
 	downloadApp();
 	runApp();
+	MainComm_SendString("download app sucess and run!\r\n");
 	return COMMAND_SUCCESS;
 }
 	
 	
 static COMMAND_RET (runApp)(void)
 {
+	MainComm_SendString("run app!\r\n");
 	return COMMAND_SUCCESS;
 }
