@@ -30,7 +30,7 @@ void iprintf(char *fmt,...)
 	len = vsprintf(buf,fmt,ap);                 //save data form fmt to buf buffer
 	va_end(ap);				                          //end
 //  cdcSend2Host((uint8_t *)buf,(uint16_t)len); //send	
-	MainComm_SendString(buf);
+	DebugComm_SendString(buf);
 }
 
 void cmd_printf(char *fmt, uint8_t *cmd) 

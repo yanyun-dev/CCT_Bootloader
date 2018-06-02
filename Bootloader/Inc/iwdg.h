@@ -49,13 +49,7 @@
 extern IWDG_HandleTypeDef hiwdg;
 
 /* USER CODE BEGIN Private defines */
-#define APP_IWDG_Start() do { \
-	HAL_IWDG_Start(&hiwdg); \
-}while(0)
 
-#define APP_IWDG_Refresh() do { \
-	HAL_IWDG_Refresh(&hiwdg); \
-}while(0)
 /* USER CODE END Private defines */
 
 extern void Error_Handler(void);

@@ -22,26 +22,19 @@ Dialog DLL:      TCM.DLL V1.21.0.0
  
 <h2>Project:</h2>
 E:\STM32\Bootloader_Project\Bootloader\MDK-ARM\Bootloader.uvprojx
-Project File Date:  05/31/2018
+Project File Date:  06/02/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 4 (build 422)', folder: 'D:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Bootloader'
-compiling bl_command.c...
-../Inc/bl_command.h(38): warning:  #1-D: last line of file ends without a newline
+compiling crc16.c...
+compiling xmodem.c...
+..\Inc\amc\xmodem.h(6): warning:  #1-D: last line of file ends without a newline
   #endif
-..\Src\bl_command.c(25): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
-  		
-ainComm_SendString(CmdArray[i].description);
-..\Src\bl_command.c(52): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
-  	
-ainComm_SendString(cmd->description);
-..\Src\bl_command.c(83): warning:  #1-D: last line of file ends without a newline
-  }
-..\Src\bl_command.c: 4 warnings, 0 errors
+..\Src\amc\xmodem.c: 1 warning, 0 errors
 linking...
-Program Size: Code=11676 RO-data=416 RW-data=48 ZI-data=1104  
-"Bootloader\Bootloader.axf" - 0 Error(s), 4 Warning(s).
+Program Size: Code=12788 RO-data=928 RW-data=40 ZI-data=2200  
+"Bootloader\Bootloader.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -59,7 +52,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.0.0
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

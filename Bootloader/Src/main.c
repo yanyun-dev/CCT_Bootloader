@@ -33,7 +33,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_hal.h"
-#include "crc.h"
 #include "iwdg.h"
 #include "usart.h"
 #include "gpio.h"
@@ -85,18 +84,18 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_CRC_Init();
   MX_USART1_UART_Init();
   MX_IWDG_Init();
+  MX_USART2_UART_Init();
 
   /* USER CODE BEGIN 2 */
 	gChar = '\0';
 //	APP_IWDG_Start();
-	MainComm_SendString("\033[2J");
-	MainComm_SendString("\033[2J");
-	MainComm_SendString("\033[1;40;32m");
+	DebugComm_SendString("\033[2J");
+	DebugComm_SendString("\033[2J");
+	DebugComm_SendString("\033[1;40;32m");
 	iprintf("\033[%d;%dH", 1, 1);
-	MainComm_SendString("bootloader start...\r\n");
+	DebugComm_SendString("bootloader start...\r\n");
 //	MainComm_SendString("\r\n->");
   /* USER CODE END 2 */
 
@@ -111,7 +110,7 @@ int main(void)
 		iprintf("Press any key to interrupt autoboot:  %d",5);
 		for(i = 5; i > 0; --i)
 		{	
-			if(MainComm_GetChar(&gChar, 1000) == HAL_TIMEOUT){
+			if(DebugComm_GetChar(&gChar, 1000) == HAL_TIMEOUT){
 				iprintf("\033[%dD", 1);
 				iprintf("%d", i-1);
 			}
@@ -119,27 +118,27 @@ int main(void)
 				break;
 			}
 		}
-		MainComm_SendString("\r\n");
+		DebugComm_SendString("\r\n");
 		//支持的命令列表输出
 		if(i != 0)
 		{
 			while(1) {				
 				commandAllDisplay();
-				MainComm_SendString("Select command code: ");
-				while(MainComm_GetChar(&gChar, HAL_MAX_DELAY) == HAL_OK)
+				DebugComm_SendString("Select command code: ");
+				while(DebugComm_GetChar(&gChar, HAL_MAX_DELAY) == HAL_OK)
 				{
-					MainComm_PutChar(&gChar, 0);
+					DebugComm_PutChar(&gChar, 0);
 					assert(COMMAND_MAX < 10);
 					if(gChar >= '0' && gChar < '0' + COMMAND_MAX - 1)
 					{
-						MainComm_SendString("\r\n");
+						DebugComm_SendString("\r\n");
 						cmd = commandGet(gChar - '0');
 						commandRun(cmd);
 						break;
 					}
 					else {
-						MainComm_SendString("\r\nError!!! invalid input\r\n");
-						MainComm_SendString("Select command code: ");
+						DebugComm_SendString("\r\nError!!! invalid input\r\n");
+						DebugComm_SendString("Select command code: ");
 					}
 //					MainComm_SendString("Input Timeout\r\n");
 //					MainComm_SendString("System will reboot...\r\n");
@@ -148,7 +147,7 @@ int main(void)
 				}
 			}
 		}
-		MainComm_SendString("App will start...\r\n");
+		DebugComm_SendString("App will start...\r\n");
 		cmd = commandGet(RUN_APP);
 		commandRun(cmd);
   }
@@ -239,7 +238,7 @@ void assert_failed(uint8_t* file, uint32_t line)
   /* User can add his own implementation to report the file name and line number,
     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
-	MainComm_Error("assert failed!!!");
+
 }
 
 #endif

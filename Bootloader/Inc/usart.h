@@ -47,37 +47,52 @@
 /* USER CODE END Includes */
 
 extern UART_HandleTypeDef huart1;
+extern UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN Private defines */
-#define MAIN_COMM_SEND_TIMEOUT 10
-#define MainComm_SendCharArray(CharArray) HAL_UART_Transmit(&huart1, CharArray, sizeof(CharArray), MAIN_COMM_SEND_TIMEOUT)
+#define MAIN_COMM_SERIAL (&huart1)
+#define DEBUG_COMM_SERIAL (&huart2)
+	 
+#define DebugComm_SendString(String) do { \
+	char *s = String; \
+	while(*s++ != '\0') ;\
+	HAL_UART_Transmit(DEBUG_COMM_SERIAL, String, s - String , 100); \
+}while(0)
+
 #define MainComm_SendString(String) do { \
-	char * s = String; \
-	while(*s != '\0') { \
-		++s; \
-	} \
-	HAL_UART_Transmit(&huart1, String, s - String + 1, MAIN_COMM_SEND_TIMEOUT); \
+	char *s = String; \
+	while(*s++ != '\0') ; \
+	HAL_UART_Transmit(MAIN_COMM_SERIAL, String, s - String, 100); \
 }while(0)
 
-#define MainComm_Error(String) do { \
-	MainComm_SendString("\033[0;31m"); \
-	char * s = String; \
-	while(*s != '\0') { \
-		++s; \
-	} \
-	iprintf("file: %s, line: %d \r\n", __FILE__, __LINE__); \
-	HAL_UART_Transmit(&huart1, String, s - String + 1, MAIN_COMM_SEND_TIMEOUT); \
-	MainComm_SendString("\033[1;40;32m"); \
+
+#define DebugComm_SendData(Data, Size, timeout) HAL_UART_Transmit(DEBUG_COMM_SERIAL, Data, Size, timeout)
+
+#define DebugComm_ReceiveData(Data, Size, timeout) HAL_UART_Receive(DEBUG_COMM_SERIAL, Data, Size, timeout)
+
+#define MainComm_SendData(Data, Size, timeout) 	HAL_UART_Transmit(MAIN_COMM_SERIAL, Data, Size, timeout)
+
+#define MainComm_ReceiveData(Data, Size, timeout) HAL_UART_Receive(MAIN_COMM_SERIAL, Data, Size, timeout)
+
+#define DebugComm_SendErrorString(String) do { \
+	char *s = String; \
+	while(*s++ != '\0') ; \
+	iprintf("\033[0;31mFile: %s, Line: %d -- ", __FILE__, __LINE__); \
+	HAL_UART_Transmit(DEBUG_COMM_SERIAL, String, s - String, 1000); \
+	iprintf("\033[1;40;32m"); \
 }while(0)
 
-#define MainComm_GetChar(pData, timeout) HAL_UART_Receive(&huart1, pData, 1, timeout)
-#define MainComm_PutChar(pData, timeout) HAL_UART_Transmit(&huart1, pData, 1, timeout)
+#define DebugComm_GetChar(pChar, timeout) HAL_UART_Receive(DEBUG_COMM_SERIAL, pChar, 1, timeout)
+#define DebugComm_PutChar(pChar, timeout) HAL_UART_Transmit(DEBUG_COMM_SERIAL, pChar, 1, timeout)
 
+#define MainComm_GetChar(pChar, timeout) HAL_UART_Receive(MAIN_COMM_SERIAL, pChar, 1, timeout)
+#define MainComm_PutChar(pChar, timeout) HAL_UART_Transmit(MAIN_COMM_SERIAL, pChar, 1, timeout)
 /* USER CODE END Private defines */
 
 extern void Error_Handler(void);
 
 void MX_USART1_UART_Init(void);
+void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 

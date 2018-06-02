@@ -2,6 +2,7 @@
 
 #include "stm32f1xx_hal.h"
 #include "usart.h"
+#include "xmodem.h"
 
 static COMMAND_RET (reboot)(void);
 static COMMAND_RET (downloadApp)(void);
@@ -19,10 +20,10 @@ static Cmd CmdArray[COMMAND_MAX] = {
 void commandAllDisplay(void)
 {
 	uint8_t i;
-	MainComm_SendString("Supported command list:\r\n");
+	DebugComm_SendString("Supported command list:\r\n");
 	for (i = 0; i < COMMAND_MAX; ++i)
 	{
-		MainComm_SendString(CmdArray[i].description);
+		DebugComm_SendString(CmdArray[i].description);
 //		MainComm_SendString("1: download App with xmoderm transfer\r\n");
 	}
 }
@@ -38,7 +39,7 @@ Cmd const *  commandGet(COMMAND command)
 {
 	if(command >= COMMAND_MAX)
 	{
-		MainComm_Error("unknown command\r\n");
+		DebugComm_SendErrorString("unknown command\r\n");
 		return NULL;
 	}
 	return (CmdArray+command);
@@ -48,36 +49,61 @@ Cmd const *  commandGet(COMMAND command)
 void commmandSelectedDisplay(Cmd *cmd)
 {
 	if(cmd == NULL)
-		MainComm_Error("unkown command\r\n");
-	MainComm_SendString(cmd->description);
+		DebugComm_SendErrorString("unkown command\r\n");
+	DebugComm_SendString(cmd->description);
 }
 
 
 static COMMAND_RET (reboot)(void)
 {
-	MainComm_SendString("reboot!!!\r\n");
+	DebugComm_SendString("reboot!!!\r\n");
 	HAL_NVIC_SystemReset();
 	return COMMAND_SUCCESS;
 }
 
 static COMMAND_RET (downloadApp)(void)
 {
+	static uint8_t xbuff[1030];	
+	int32_t rcvSize;
+	uint8_t ctrlChar, c, errorCounter = 0;
 	//xmoderm transfer
-	MainComm_SendString("download app sucess!\r\n");
+	DebugComm_SendString("download app start!\r\n");
+	rcvSize = xmodemReceive(xbuff, sizeof(xbuff));
+	if(rcvSize > 0)
+		DebugComm_SendData(xbuff, rcvSize, 1000);
+	else if(rcvSize == -1)
+	{
+		DebugComm_SendErrorString("Canceled!!!\r\n");
+		goto fail;
+	}
+	else if(rcvSize == -2)
+	{
+		DebugComm_SendErrorString("Sync error!!!\r\n");
+		goto fail;
+	}
+	else if(rcvSize == -3)
+	{
+		DebugComm_SendErrorString("too many retry error!!!\r\n");
+		goto fail;
+	}
+	DebugComm_SendString("download app complete!\r\n");
 	return COMMAND_SUCCESS;
+	
+	fail:
+	return COMMAND_FAILURE;
 }
 
 static COMMAND_RET (doanloadAndRunApp)(void)
 {
 	downloadApp();
 	runApp();
-	MainComm_SendString("download app sucess and run!\r\n");
+	DebugComm_SendString("download app sucess and run!\r\n");
 	return COMMAND_SUCCESS;
 }
 	
 	
 static COMMAND_RET (runApp)(void)
 {
-	MainComm_SendString("run app!\r\n");
+	DebugComm_SendString("run app!\r\n");
 	return COMMAND_SUCCESS;
 }
