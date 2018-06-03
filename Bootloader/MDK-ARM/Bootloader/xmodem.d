@@ -31,3 +31,5 @@ bootloader\xmodem.o: ../Inc/usart.h
 bootloader\xmodem.o: ..\Inc\amc\amc_lib.h
 bootloader\xmodem.o: D:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 bootloader\xmodem.o: ..\Inc\amc\xmodem.h
+bootloader\xmodem.o: ../Inc/constant_config.h
+bootloader\xmodem.o: ..\Inc\amc\appUpgrade.h

@@ -61,7 +61,8 @@ void Error_Handler(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-
+//#define BL
+extern uint8_t JumpToApplication(uint32_t Addr);
 /* USER CODE END 0 */
 
 int main(void)
@@ -72,30 +73,37 @@ int main(void)
 		uint8_t i;
 		uint8_t gChar;
 	Cmd const * cmd;
+#ifndef BL
+		SCB->VTOR = 0x08000000 | (0x00004000 & (uint32_t)0x1FFFFF80);
+#endif
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-
   /* Configure the system clock */
   SystemClock_Config();
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
-  MX_IWDG_Init();
+//  MX_IWDG_Init();
   MX_USART2_UART_Init();
 
   /* USER CODE BEGIN 2 */
 	gChar = '\0';
 //	APP_IWDG_Start();
+
+//	#ifdef BL
 	DebugComm_SendString("\033[2J");
 	DebugComm_SendString("\033[2J");
 	DebugComm_SendString("\033[1;40;32m");
 	iprintf("\033[%d;%dH", 1, 1);
 	DebugComm_SendString("bootloader start...\r\n");
+//	#else
+//	DebugComm_SendString("app start...\r\n");
+//	#endif
 //	MainComm_SendString("\r\n->");
   /* USER CODE END 2 */
 
@@ -140,11 +148,12 @@ int main(void)
 						DebugComm_SendString("\r\nError!!! invalid input\r\n");
 						DebugComm_SendString("Select command code: ");
 					}
-//					MainComm_SendString("Input Timeout\r\n");
-//					MainComm_SendString("System will reboot...\r\n");
-//					cmd = commandGet(REBOOT);
-//					commandRun(cmd);
+					MainComm_SendString("Input Timeout\r\n");
+					MainComm_SendString("System will reboot...\r\n");
+					cmd = commandGet(REBOOT);
+					commandRun(cmd);
 				}
+//				JumpToApplication(0x08004000);
 			}
 		}
 		DebugComm_SendString("App will start...\r\n");

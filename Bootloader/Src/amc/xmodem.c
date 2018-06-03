@@ -38,6 +38,8 @@
 #include "usart.h"
 #include "string.h"
 #include "xmodem.h"
+#include "constant_config.h"
+#include "appUpgrade.h"
 
 #define SOH  0x01
 #define STX  0x02
@@ -110,7 +112,7 @@ static void flushinput(void)
 
 int32_t xmodemReceive(uint8_t *dest, int32_t destsz)
 {
-	uint8_t xbuff[1030]; /* 1024 for XModem 1k + 3 head chars + 2 crc + nul */
+	static uint8_t xbuff[133]; /* 1024 for XModem 1k + 3 head chars + 2 crc + nul */
 	uint8_t *p;
 	int32_t bufsz, crc = 0;
 	uint8_t trychar = 'C';
@@ -170,9 +172,11 @@ int32_t xmodemReceive(uint8_t *dest, int32_t destsz)
 				if (count > bufsz) count = bufsz;
 				if (count > 0) {
 					memcpy (&dest[len], &xbuff[3], count);
+					flash_program((uint32_t *)(&xbuff[3]), 128>>2);
+						
 					#if 1
-					DebugComm_SendData(dest, count, 100);
-					len = 0;
+//					DebugComm_SendData((uint8_t *)dest, count, 100);
+					len = 0;;
 					#else
 					len += count;
 					#endif

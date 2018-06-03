@@ -29,4 +29,7 @@ bootloader\bl_command.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 bootloader\bl_command.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 bootloader\bl_command.o: ../Inc/usart.h
 bootloader\bl_command.o: ..\Inc\amc\amc_lib.h
-bootloader\bl_command.o: ..\Inc\amc\xmodem.h
+bootloader\bl_command.o: ..\Inc\amc\common.h
+bootloader\bl_command.o: D:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+bootloader\bl_command.o: ..\Inc\amc\ymodem.h
+bootloader\bl_command.o: ../Inc/constant_config.h

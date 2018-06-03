@@ -22,19 +22,35 @@ Dialog DLL:      TCM.DLL V1.21.0.0
  
 <h2>Project:</h2>
 E:\STM32\Bootloader_Project\Bootloader\MDK-ARM\Bootloader.uvprojx
-Project File Date:  06/02/2018
+Project File Date:  06/03/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 4 (build 422)', folder: 'D:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Bootloader'
-compiling crc16.c...
-compiling xmodem.c...
-..\Inc\amc\xmodem.h(6): warning:  #1-D: last line of file ends without a newline
+compiling bl_command.c...
+../Inc/bl_command.h(38): warning:  #1-D: last line of file ends without a newline
   #endif
-..\Src\amc\xmodem.c: 1 warning, 0 errors
+..\Src\bl_command.c(35): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  		
+ebugComm_SendString(CmdArray[i].description);
+..\Src\bl_command.c(62): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  	
+ebugComm_SendString(cmd->description);
+..\Src\bl_command.c(108): warning:  #940-D: missing return statement at end of non-void function "downloadApp" 
+  }
+..\Src\bl_command.c(75): warning:  #177-D: variable "xbuff"  was declared but never referenced
+  	static uint8_t xbuff[1030];	
+..\Src\bl_command.c(76): warning:  #177-D: variable "rcvSize"  was declared but never referenced
+  	int32_t rcvSize;
+..\Src\bl_command.c(170): warning:  #111-D: statement is unreachable
+  	return 1;
+..\Src\bl_command.c(171): warning:  #1-D: last line of file ends without a newline
+  }
+..\Src\bl_command.c: 8 warnings, 0 errors
 linking...
-Program Size: Code=12788 RO-data=928 RW-data=40 ZI-data=2200  
-"Bootloader\Bootloader.axf" - 0 Error(s), 1 Warning(s).
+Program Size: Code=14604 RO-data=500 RW-data=60 ZI-data=2468  
+After Build - User command #1: "D:\Program Files (x86)\Keil_v5\ARM\ARMCC\bin\fromelf.exe" --bin -o  ./Bootloader/Bootloader.bin  ./Bootloader/Bootloader.axf
+"Bootloader\Bootloader.axf" - 0 Error(s), 8 Warning(s).
 
 <h2>Software Packages used:</h2>
 

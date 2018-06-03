@@ -25,7 +25,9 @@
 "bootloader\amc_lib.o"
 "bootloader\cqueue.o"
 "bootloader\crc16.o"
-"bootloader\xmodem.o"
+"bootloader\download.o"
+"bootloader\ymodem.o"
+"bootloader\common.o"
 --library_type=microlib --strict --scatter "Bootloader\Bootloader.sct"
 --diag_suppress=L6329 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
